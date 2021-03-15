@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tinder-firebase": {
+      "hosting": {
+        "app": [
+          "tinder-firebase"
+        ]
+      }
+    }
+  }
+}
