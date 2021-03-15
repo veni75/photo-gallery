@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { SharedPipeModule } from '../modules/sharePipe.module';
+import { ProfileCardComponent } from 'src/app/common/profile-card/profile-card.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { SharedPipeModule } from '../modules/sharePipe.module';
     Tab2PageRoutingModule,
     SharedPipeModule
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page,ProfileCardComponent]
 })
 export class Tab2PageModule {}

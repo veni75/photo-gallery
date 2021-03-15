@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SharedPipeModule } from '../modules/sharePipe.module';
+import { ProfileCardComponent } from 'src/app/common/profile-card/profile-card.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,8 @@ import { SharedPipeModule } from '../modules/sharePipe.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    SharedPipeModule
+    SharedPipeModule,    
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page,ProfileCardComponent]
 })
 export class Tab1PageModule {}

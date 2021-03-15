@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { User } from '../model/user';
 import { UserService } from '../service/user.service';
-import { Observable, of, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',

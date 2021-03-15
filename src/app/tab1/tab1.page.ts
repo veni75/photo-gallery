@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { UserService } from '../service/user.service';
-import { ConnectionService } from '../service/connection.service';
-import { ProfileCardComponent } from 'src/app/common/profile-card/profile-card.component';
-import { Connection } from '../model/connection';
 
 @Component({
   selector: 'app-tab1',
@@ -23,10 +20,14 @@ export class Tab1Page {
   mylike: any;
   genderMale: any;
   genderFemale: any;
+  myInterest: any;
+  myLocation: any
   allUsersVar: boolean = false;
-  likedUsersVar: boolean = false;
+  likedUsersVar: boolean = true;
   maleUsersVar: boolean = false;
   femaleUsersVar: boolean = false;
+  interestUsersVar: boolean = false;
+  locationUsersVar: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -35,6 +36,8 @@ export class Tab1Page {
     this.myliked();
     this.myMale();
     this.myFemale();
+    this.myInterestUsers();
+    this.myLocationUsers();
   }
 
   myliked(): void {
@@ -64,6 +67,24 @@ export class Tab1Page {
       error => console.log(error))
   }
 
+  myInterestUsers(): void {
+    this.userList$.subscribe(data => {
+      this.myInterest = data
+        .map(item => item)
+        .filter(item => item.interests === "Angular");
+    },
+      error => console.log(error))
+  }
+
+  myLocationUsers(): void {
+    this.userList$.subscribe(data => {
+      this.myLocation = data
+        .map(item => item)
+        .filter(item => item.location === "Budapest");
+    },
+      error => console.log(error))
+  }
+
   liked(user: User): void {
 
     this.userService.update(user).then(
@@ -84,29 +105,40 @@ export class Tab1Page {
     );
   }
 
-  allUsers(): void {
-    this.allUsersVar = true;
+  setFalse(): void {
+    this.allUsersVar = false;
     this.likedUsersVar = false;
     this.maleUsersVar = false;
     this.femaleUsersVar = false;
+    this.interestUsersVar = false;
+    this.locationUsersVar = false;
+  }
+
+  allUsers(): void {
+    this.setFalse();
+    this.allUsersVar = true;
   }
   likedUsers(): void {
+    this.setFalse();
     this.likedUsersVar = true;
-    this.allUsersVar = false;
-    this.maleUsersVar = false;
-    this.femaleUsersVar = false;
   }
   maleUsers(): void {
+    this.setFalse();
     this.maleUsersVar = true;
-    this.allUsersVar = false;
-    this.likedUsersVar = false;
-    this.femaleUsersVar = false;
   }
   femaleUsers(): void {
+    this.setFalse();
     this.femaleUsersVar = true;
-    this.allUsersVar = false;
-    this.likedUsersVar = false;
-    this.maleUsersVar = false;
+  }
+  interestUsers(): void {
+    this.setFalse();
+    this.interestUsersVar = true;
+
+  }
+  locationUsers(): void {
+    this.setFalse();
+    this.locationUsersVar = true;
+
   }
 
 }

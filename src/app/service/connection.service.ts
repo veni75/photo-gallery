@@ -12,11 +12,11 @@ export class ConnectionService {
 
   all: Observable<Connection[]>;
   itemsCollection: AngularFirestoreCollection<any>;
-  
+
 
   constructor(
     private firestore: AngularFirestore,
-  ) { 
+  ) {
     this.itemsCollection = this.firestore.collection('user');
     this.all = this.itemsCollection.valueChanges({
       idField: 'docID'

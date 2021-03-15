@@ -11,11 +11,11 @@ export class InterestService {
 
   all: Observable<Interest[]>;
   itemsCollection: AngularFirestoreCollection<any>;
-  
+
 
   constructor(
     private firestore: AngularFirestore,
-  ) { 
+  ) {
     this.itemsCollection = this.firestore.collection('user');
     this.all = this.itemsCollection.valueChanges({
       idField: 'docID'
