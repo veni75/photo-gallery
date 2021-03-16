@@ -24,6 +24,7 @@ export class Tab1Page {
   femaleUsersVar: boolean = false;
   interestUsersVar: boolean = false;
   locationUsersVar: boolean = false;
+  suggestedUsersVar: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -54,6 +55,7 @@ export class Tab1Page {
     this.femaleUsersVar = false;
     this.interestUsersVar = false;
     this.locationUsersVar = false;
+    this.suggestedUsersVar = false;
   }
 
   allUsers(): void {
@@ -75,12 +77,14 @@ export class Tab1Page {
   interestUsers(): void {
     this.setFalse();
     this.interestUsersVar = true;
-
   }
   locationUsers(): void {
     this.setFalse();
     this.locationUsersVar = true;
-
+  }
+  suggestedUsers(): void {
+    this.setFalse();
+    this.suggestedUsersVar = true;
   }
 
 }

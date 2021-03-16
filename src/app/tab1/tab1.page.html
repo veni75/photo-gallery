@@ -22,6 +22,7 @@
 </div>
   <ion-searchbar [(ngModel)]="phrase"></ion-searchbar>
   <ion-button (click)="likedUsers()" [class.special]="likedUsersVar" color="success">Liked users</ion-button>
+  <ion-button (click)="suggestedUsers()" [class.special]="suggestedUsersVar" color="success">Suggested only for You</ion-button>
   <ion-button (click)="allUsers()" [class.special]="allUsersVar" color="success">All Users</ion-button>
   <ion-button (click)="maleUsers()" [class.special]="maleUsersVar" color="success">Male users</ion-button>
   <ion-button (click)="femaleUsers()" [class.special]="femaleUsersVar" color="success">Female users</ion-button>
@@ -38,6 +39,31 @@
           <app-profile-card [user]="user"></app-profile-card>
           <ion-button (click)="disliked(user)" color="danger">
             <ion-icon name="trash-bin"></ion-icon> Dislike
+          </ion-button>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="suggestedUsersVar">
+    <ion-title size="large">Suggested only for You</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'gender':'male'|search:'interests'| search:'location'|filter: filterKey: phrase">
+      <ion-item>
+        <ion-card>
+          <app-profile-card [user]="user"></app-profile-card>
+          <ion-item>
+            <ion-label for="like">Do you like?</ion-label>
+            <ion-select placeholder="Select..." id="like" name="like" [(ngModel)]="user.liked" required>
+              <ion-select-option value="true">Yes. I like him/her</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button (click)="disliked(user)" color="danger">
+            <ion-icon name="trash-bin"></ion-icon> Dislike
+          </ion-button>
+          <ion-button (click)="liked(user)" color="success">
+            <ion-icon *ngIf="!like" name="save"></ion-icon>
+            <ion-icon *ngIf="like" name="heart"></ion-icon> Save
           </ion-button>
         </ion-card>
       </ion-item>
