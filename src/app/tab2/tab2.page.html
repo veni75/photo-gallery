@@ -15,7 +15,7 @@
 
   <ion-searchbar [(ngModel)]="phrase"></ion-searchbar>
 
-  <ion-list *ngFor="let user of userList$| async | filter: 'name': phrase">
+  <ion-list *ngFor="let user of userList$| async |search:'accepted'|slice:1| filter: 'name': phrase">
     <ion-item>
       <ion-card>
         <app-profile-card [user]="user"></app-profile-card>

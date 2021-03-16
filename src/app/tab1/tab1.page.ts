@@ -14,14 +14,10 @@ export class Tab1Page {
   like: boolean = false;
   dislike: boolean = false;
   phrase: string = '';
-  numberKey: number = 10;
+  
   filterKey: string = 'name';
   filterKeys: string[] = Object.keys(new User());
-  mylike: any;
-  genderMale: any;
-  genderFemale: any;
-  myInterest: any;
-  myLocation: any
+  
   allUsersVar: boolean = false;
   likedUsersVar: boolean = true;
   maleUsersVar: boolean = false;
@@ -31,68 +27,14 @@ export class Tab1Page {
 
   constructor(
     private userService: UserService,
-
-  ) {
-    this.myliked();
-    this.myMale();
-    this.myFemale();
-    this.myInterestUsers();
-    this.myLocationUsers();
-  }
-
-  myliked(): void {
-    this.userList$.subscribe(data => {
-      this.mylike = data
-        .map(item => item)
-        .filter(item => item.liked);
-    },
-      error => console.log(error))
-  }
-
-  myMale(): void {
-    this.userList$.subscribe(data => {
-      this.genderMale = data
-        .map(item => item)
-        .filter(item => item.gender === "male");
-    },
-      error => console.log(error))
-  }
-
-  myFemale(): void {
-    this.userList$.subscribe(data => {
-      this.genderFemale = data
-        .map(item => item)
-        .filter(item => item.gender === "female");
-    },
-      error => console.log(error))
-  }
-
-  myInterestUsers(): void {
-    this.userList$.subscribe(data => {
-      this.myInterest = data
-        .map(item => item)
-        .filter(item => item.interests === "Angular");
-    },
-      error => console.log(error))
-  }
-
-  myLocationUsers(): void {
-    this.userList$.subscribe(data => {
-      this.myLocation = data
-        .map(item => item)
-        .filter(item => item.location === "Budapest");
-    },
-      error => console.log(error))
-  }
-
+  ) { }
+  
   liked(user: User): void {
-
     this.userService.update(user).then(
       res => alert("You liked"),
       err => alert(err.error)
     );
   }
-
 
   disliked(user: User): void {
     if (!confirm("Are you sure?")) {
