@@ -16,7 +16,7 @@ export class Tab1Page {
   phrase: string = '';
   
   filterKey: string = 'name';
-  filterKeys: string[] = Object.keys(new User());
+  filterKeys: string[] = ['name', 'age', 'location', 'interests'];
   
   allUsersVar: boolean = false;
   likedUsersVar: boolean = true;

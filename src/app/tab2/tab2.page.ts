@@ -11,13 +11,14 @@ import { Observable } from 'rxjs';
 export class Tab2Page {
   phrase: string = '';
   userList$: Observable<User[]> = this.userService.all;
+  filterKey: string = 'name';
+  filterKeys: string[] = ['name', 'age', 'location', 'interests'];
+  like: boolean = false;
+  disconn: boolean = false;
 
   constructor(
     private userService: UserService,
   ) { }
-
-  like: boolean = false;
-  disconn: boolean = false;
 
   disconnection(user: User): void {
     if (!confirm("Are you sure?")) {

@@ -12,7 +12,14 @@
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <h3>What do you search? Choose!</h3>
+  <div>
+    <ion-select [(ngModel)]="filterKey" class="form-control">
+        <ion-select-option *ngFor="let key of filterKeys" [value]="key">
+            {{ key }}
+        </ion-select-option>
+    </ion-select>
+</div>
   <ion-searchbar [(ngModel)]="phrase"></ion-searchbar>
   <ion-button (click)="likedUsers()" [class.special]="likedUsersVar" color="success">Liked users</ion-button>
   <ion-button (click)="allUsers()" [class.special]="allUsersVar" color="success">All Users</ion-button>
@@ -22,16 +29,10 @@
   </ion-button>
   <ion-button (click)="locationUsers()" [class.special]="locationUsersVar" color="success">Similar location users
   </ion-button>
-
-  <ion-title *ngIf="likedUsersVar" size="large">Liked users</ion-title>
-  <ion-title *ngIf="allUsersVar" size="large">All users</ion-title>
-  <ion-title *ngIf="maleUsersVar" size="large">Male users</ion-title>
-  <ion-title *ngIf="femaleUsersVar" size="large">Female users</ion-title>
-  <ion-title *ngIf="interestUsersVar" size="large">Similar interests users</ion-title>
-  <ion-title *ngIf="locationUsersVar" size="large">Similar location users</ion-title>
-
+  
   <div *ngIf="likedUsersVar">
-    <ion-list *ngFor="let user of userList$ |async|search:'liked'|slice:1| filter: 'name': phrase">
+    <ion-title size="large">Liked users</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'liked'|slice:1| filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>
@@ -44,7 +45,8 @@
   </div>
 
   <div *ngIf="allUsersVar">
-    <ion-list *ngFor="let user of userList$ | async| slice:1|filter: 'name': phrase">
+    <ion-title size="large">All users</ion-title>
+    <ion-list *ngFor="let user of userList$ | async| slice:1|filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>
@@ -67,7 +69,8 @@
   </div>
 
   <div *ngIf="maleUsersVar">
-    <ion-list *ngFor="let user of userList$ |async|search:'gender':'male'| filter: 'name': phrase">
+    <ion-title size="large">Male users</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'gender':'male'| filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>
@@ -91,7 +94,8 @@
   </div>
 
   <div *ngIf="femaleUsersVar">
-    <ion-list *ngFor="let user of userList$ |async|search:'gender':'female'|slice:1| filter: 'name': phrase">
+    <ion-title size="large">Female users</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'gender':'female'|slice:1| filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>
@@ -117,7 +121,8 @@
   </div>
 
   <div *ngIf="interestUsersVar">
-    <ion-list *ngFor="let user of userList$ |async|search:'interests'|slice:1| filter: 'name': phrase">
+    <ion-title size="large">Similar interests users</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'interests'|slice:1| filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>
@@ -143,7 +148,8 @@
   </div>
 
   <div *ngIf="locationUsersVar">
-    <ion-list *ngFor="let user of userList$ |async|search:'location'|slice:1| filter: 'name': phrase">
+    <ion-title size="large">Similar location users</ion-title>
+    <ion-list *ngFor="let user of userList$ |async|search:'location'|slice:1| filter: filterKey: phrase">
       <ion-item>
         <ion-card>
           <app-profile-card [user]="user"></app-profile-card>

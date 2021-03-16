@@ -12,10 +12,17 @@
       <ion-title size="large">Connections</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <h3>What do you search? Choose!</h3>
+  <div>
+    <ion-select [(ngModel)]="filterKey" class="form-control">
+      <ion-select-option *ngFor="let key of filterKeys" [value]="key">
+        {{ key }}
+      </ion-select-option>
+    </ion-select>
+  </div>
   <ion-searchbar [(ngModel)]="phrase"></ion-searchbar>
 
-  <ion-list *ngFor="let user of userList$| async |search:'accepted'|slice:1| filter: 'name': phrase">
+  <ion-list *ngFor="let user of userList$| async |search:'accepted'|slice:1| filter: filterKey: phrase">
     <ion-item>
       <ion-card>
         <app-profile-card [user]="user"></app-profile-card>
